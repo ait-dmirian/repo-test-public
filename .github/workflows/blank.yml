@@ -22,7 +22,7 @@ jobs:
     - name: Set env
       run: |
         echo ${{ github.ref }}
-        echo ${GITHUB_REF##*/}
+        echo ${GITHUB_HEAD_REF##*/}
         if [ ${{ github.ref }} == 'refs/heads/main' ]; then 
           echo "myenv=prod" >> "$GITHUB_ENV"
         fi
