@@ -20,6 +20,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Set env
+      id: set_env
       run: |        
         echo "GITHUB_REF:" ${GITHUB_REF}
         echo  "GITHUB_REF_NAME" ${GITHUB_REF_NAME}
@@ -28,10 +29,10 @@ jobs:
         echo  "GITHUB_HEAD_REF short" ${GITHUB_HEAD_REF##*/}
         echo 
         if [ ${GITHUB_HEAD_REF##*/} == 'main' ]; then 
-          echo "myenv=prod" >> "$GITHUB_ENV"
+          echo "myenv=prod" >> "$GITHUB_OUTPUT"
         fi
         if [ ${GITHUB_HEAD_REF##*/} == 'dev' ]; then 
-        echo "myenv=dev" >> "$GITHUB_ENV"
+        echo "myenv=dev" >> "$GITHUB_OUTPUT"
         fi
         echo "myshow=QA" >> "$GITHUB_ENV"
         echo "myenv is ${{ env.myshow }}"
@@ -62,7 +63,7 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
-          echo "${{ env.myenv }}"
           echo "${{ VARS.AWS_ACCOUNT }}"
+          echo "${{ needs.set_env.outputs.myenv }}"
           
 
