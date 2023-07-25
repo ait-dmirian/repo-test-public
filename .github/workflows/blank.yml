@@ -35,6 +35,15 @@ jobs:
         echo "$GITHUB_ENV"
         echo "Hello my env is: " ${{ env.myenv }}
         echo ${{ env.myenv }}
+    - name: Set the value
+      id: step_one
+      run: |
+        echo "action_state=yellow" >> "$GITHUB_ENV"
+    - name: Use the value
+      id: step_two
+      run: |
+        echo "${{ env.action_state }}" # This will output 'yellow'
+        
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
