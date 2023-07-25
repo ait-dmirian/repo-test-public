@@ -24,6 +24,9 @@ jobs:
         echo ${{ github.ref }}
         if [ ${{ github.ref }} == 'refs/heads/main' ]; then echo "myenv=prod" >> $GITHUB_ENV; fi
         if [ ${{ github.ref }} == 'refs/heads/dev' ]; then echo "myenv=dev" >> $GITHUB_ENV; fi
+        echo "myshow=QA" >> $GITHUB_ENV
+        echo "myshow = " ${{ env.myshow }}
+        echo $GITHUB_ENV
         echo "Hello my env is: " ${{ env.myenv }}
         echo ${{ env.myenv }}
   # This workflow contains a single job called "build"
