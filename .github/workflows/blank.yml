@@ -24,6 +24,7 @@ jobs:
         echo ${{ github.ref }}
         if [ ${{ github.ref }} == 'refs/heads/main' ]; then 
           echo "myenv=prod" >> "$GITHUB_ENV"
+          echo "it works"
         fi
         if [ ${{ github.ref }} == 'refs/heads/dev' ]; then 
         echo "myenv=dev" >> "$GITHUB_ENV"
